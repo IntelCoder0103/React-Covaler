@@ -8,14 +8,11 @@ import { IProduct } from "../../@types/product";
 import { demoProducts } from "../../data.sample";
 import ProductRow from "./product.row";
 import ProductTable from "./product.table";
+import { testProductContextValue } from "../../@contexts/mocks/product.context.mock";
 
-const testContextValue: IProductContextProps = {
-  addProduct: jest.fn(),
-  editProduct: jest.fn(),
-  deleteProduct: jest.fn(),
-  getProduct: jest.fn(),
-  products: demoProducts,
-};
+
+const testContextValue: IProductContextProps = testProductContextValue;
+
 const ProductRowTestComponent = (props: {
   contextValue: IProductContextProps;
   product: IProduct;

@@ -8,10 +8,9 @@ export interface IProductRowProps {
 }
 
 export default function ProductRow(props: IProductRowProps) {
-  const {
-    product: { active, name, price, type, id },
-  } = props;
-  const { deleteProduct } = React.useContext(ProductContext);
+  const { product } = props;
+  const { active, name, price, type, id } = product;
+  const { deleteProduct, addToCart } = React.useContext(ProductContext);
 
   const onDelete = (id: number) => () => {
     if (confirm("Are you sure to delete this product?")) {
@@ -42,6 +41,13 @@ export default function ProductRow(props: IProductRowProps) {
           data-testid="delete-button"
         >
           <i className="fa fa-trash"></i>
+        </button>
+        <button
+          className="btn btn-default"
+          onClick={() => { addToCart(product) }}
+          data-testid="add-to-cart"
+        >
+          Add to cart
         </button>
       </td>
     </tr>

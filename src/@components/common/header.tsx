@@ -5,6 +5,9 @@ const AppHeader = styled.header`
     display: flex;
     padding: 1rem;
     font-size: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 `;
 
 export default AppHeader;

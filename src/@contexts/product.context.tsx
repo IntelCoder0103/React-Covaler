@@ -14,6 +14,11 @@ export interface IProductContextProps {
     editProduct: (product: IProduct) => void;
     deleteProduct: (productid: number) => void;
     getProduct: (productid: number) => IProduct | null;
+
+    cart: IProduct[];
+    addToCart: (product: IProduct) => void;
+    removeFromCart: (productId: number) => void;
+
 }
 const ProductContext = createContext<IProductContextProps>(
     {} as IProductContextProps
@@ -23,6 +28,7 @@ export const ProductContextProvider: React.FC<PropsWithChildren> = ({
     children,
 }) => {
     const [products, setProducts] = useState<IProduct[]>(initialProducts);
+    const [cart, setCart] = useState<IProduct[]>([]);
     const addProduct = (product: IProduct) => {
         product.id =
             products.reduce<number>(
@@ -45,6 +51,12 @@ export const ProductContextProvider: React.FC<PropsWithChildren> = ({
     const getProduct = (productid: number) => {
         return products.find((p) => p.id === productid) ?? null;
     };
+    const addToCart = (product: IProduct) => {
+        setCart(cart => [...cart, product]);
+    };
+    const removeFromCart = (productId: number) => {
+        setCart(cart => cart.filter(p => p.id !== productId));
+    }
     return (
         <ProductContext.Provider
             value={{
@@ -53,6 +65,10 @@ export const ProductContextProvider: React.FC<PropsWithChildren> = ({
                 deleteProduct,
                 getProduct,
                 products,
+
+                cart,
+                addToCart,
+                removeFromCart
             }}
         >
             {children}

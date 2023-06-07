@@ -10,7 +10,7 @@ import { demoProducts } from "../../data.sample";
 import ProductDetail from "./product.detail";
 import ProductRow from "./product.row";
 import ProductTable from "./product.table";
-
+import { testProductContextValue } from "../../@contexts/mocks/product.context.mock";
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"), // use actual for all non-hook parts
   useParams: jest.fn(() => ({
@@ -18,13 +18,7 @@ jest.mock("react-router", () => ({
   })),
 }));
 
-const testContextValue: IProductContextProps = {
-  addProduct: jest.fn(),
-  editProduct: jest.fn(),
-  deleteProduct: jest.fn(),
-  getProduct: jest.fn(),
-  products: demoProducts,
-};
+const testContextValue: IProductContextProps = testProductContextValue;
 const ProductDetailTestComponent = (props: {
   contextValue: IProductContextProps;
   method: "add" | "edit";

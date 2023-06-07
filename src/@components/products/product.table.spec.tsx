@@ -9,15 +9,10 @@ import { IProduct } from "../../@types/product";
 import { demoProducts } from "../../data.sample";
 import { Router } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-const testContextValue: IProductContextProps = {
-  addProduct: (product) => {},
-  editProduct: (product) => {},
-  deleteProduct: (product) => {},
-  getProduct: (product) => {
-    return {} as IProduct;
-  },
-  products: demoProducts,
-};
+import { testProductContextValue } from "../../@contexts/mocks/product.context.mock";
+
+const testContextValue: IProductContextProps = testProductContextValue;
+
 const ProductTableTestComponent = (contextValue: IProductContextProps) => {
   return (
     <ProductContext.Provider value={contextValue}>
